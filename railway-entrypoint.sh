@@ -64,20 +64,4 @@ if [[ -z "${PAPERLESS_THREADS_PER_WORKER:-}" ]]; then
 	log "cpu_quota=${cpus} task_workers=${workers} threads_per_worker=${threads} (visible cores: $(nproc))"
 fi
 
-# 4. Keep exports on the volume.
-#
-# The export directory is hardcoded to ${PAPERLESS_SRC_DIR}/../export in
-# settings.py, so a document archive exported by the deployer would otherwise
-# sit on the disposable layer.
-EXPORT_LINK=/usr/src/paperless/export
-EXPORT_TARGET=/data/export
-mkdir -p "${EXPORT_TARGET}"
-if [[ ! -L "${EXPORT_LINK}" ]]; then
-	rm -rf "${EXPORT_LINK}"
-	ln -s "${EXPORT_TARGET}" "${EXPORT_LINK}"
-fi
-# init-folders' `find ... -exec chown` does not descend through a symlink given
-# as its argument, so repair ownership on the real directory here.
-chown -R paperless:paperless "${EXPORT_TARGET}"
-
 exec /init "$@"

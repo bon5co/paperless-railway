@@ -23,9 +23,7 @@ changes, none of which can be made from the template's variables panel:
    the host's core count inside a cgroup-limited container (measured: 5 in a
    `--cpus 2` container), so ocrmypdf oversubscribes the plan on every document.
 
-Everything durable lives under one volume at `/data`: the database-adjacent data
-dir, media, the consume directory, and the export directory (hardcoded upstream to
-`/usr/src/paperless/export`, so it is symlinked onto the volume here).
+Everything durable lives under one volume at `/data`: the data dir, media, and the consume directory.
 
 ## Variables
 
