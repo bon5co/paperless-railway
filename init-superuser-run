@@ -1,0 +1,26 @@
+#!/command/with-contenv /usr/bin/bash
+# shellcheck shell=bash
+#
+# Replaces upstream's init-superuser. Upstream calls manage_superuser, which
+# returns early when the user (or any superuser) already exists, so the admin
+# credential is fixed forever at whatever the first boot used. This one applies
+# the credential on every boot, which makes a redeploy a working reset -- the
+# only recovery path an instance with no SMTP has.
+
+declare -r log_prefix="[init-superuser]"
+
+if [[ -z "${PAPERLESS_ADMIN_USER}" ]]; then
+	echo "${log_prefix} PAPERLESS_ADMIN_USER is empty; refusing to start without an admin account"
+	exit 1
+fi
+
+echo "${log_prefix} Applying superuser credentials..."
+cd "${PAPERLESS_SRC_DIR}" || exit 1
+
+declare -r script=/usr/local/lib/paperless-railway/rotate_superuser.py
+
+if [[ -n "${USER_IS_NON_ROOT}" ]]; then
+	python3 manage.py shell -c "exec(open('${script}').read())"
+else
+	s6-setuidgid paperless python3 manage.py shell -c "exec(open('${script}').read())"
+fi
