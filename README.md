@@ -1,5 +1,9 @@
 # paperless-railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/paperless-ngx-or-just-updated-document-m?referralCode=Z1xivh&utm_medium=integration&utm_source=template&utm_campaign=generic)
+
+**Deploy on Railway:** [Paperless-ngx template](https://railway.com/deploy/paperless-ngx-or-just-updated-document-m?referralCode=Z1xivh&utm_medium=integration&utm_source=template&utm_campaign=generic)
+
 Wrapper image for running [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
 3.1.1 on [Railway](https://railway.com), published as
 `ghcr.io/bon5co/paperless-railway:3.1.1`.
