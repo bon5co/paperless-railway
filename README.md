@@ -5,8 +5,8 @@
 **Deploy on Railway:** [Paperless-ngx template](https://railway.com/deploy/paperless-ngx-or-just-updated-document-m?referralCode=Z1xivh&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 Wrapper image for running [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
-3.1.1 on [Railway](https://railway.com), published as
-`ghcr.io/bon5co/paperless-railway:3.1.1`.
+3.4.2 on [Railway](https://railway.com), published as
+`ghcr.io/bon5co/paperless-railway:3.4.2`.
 
 The official image assumes a docker-compose environment. On Railway it needs four
 changes, none of which can be made from the template's variables panel:
@@ -37,7 +37,7 @@ Everything durable lives under one volume at `/data`: the data dir, media, and t
 | `PAPERLESS_ADMIN_USER` | Defaults to `admin`. |
 | `PAPERLESS_SECRET_KEY` | Django secret key. |
 | `PAPERLESS_URL` | The public URL of the deployment, for CSRF/allowed hosts. |
-| `PAPERLESS_DBHOST`, `PAPERLESS_DBUSER`, `PAPERLESS_DBPASS`, `PAPERLESS_DBNAME` | Postgres connection. |
+| `PAPERLESS_DBHOST`, `PAPERLESS_DBUSER`, `PAPERLESS_DBPASS`, `PAPERLESS_DBNAME` | Postgres connection (referenced from the postgres service). `PAPERLESS_DBENGINE=postgresql` and `PAPERLESS_DBPORT=5432` are baked into the image. |
 | `PAPERLESS_REDIS` | Redis connection URL. |
 
 ## Licence

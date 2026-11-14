@@ -24,5 +24,5 @@ jobs:
           push: true
           provenance: false
           tags: |
-            ghcr.io/bon5co/paperless-railway:3.1.1
+            ghcr.io/bon5co/paperless-railway:3.4.2
             ghcr.io/bon5co/paperless-railway:latest
