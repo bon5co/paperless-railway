@@ -4,7 +4,7 @@
 # system drops literal variable defaults (they would publish as blank required
 # fields on the deploy form), and because the upstream image assumes a
 # docker-compose environment rather than Railway's one-volume, injected-$PORT one.
-FROM ghcr.io/paperless-ngx/paperless-ngx:3.1.1
+FROM ghcr.io/paperless-ngx/paperless-ngx:3.4.2
 
 # Literals baked in so the deploy form asks for nothing that the image already knows.
 # All durable state lands under the single Railway volume at /data.
@@ -12,6 +12,8 @@ ENV PAPERLESS_DATA_DIR=/data/data \
     PAPERLESS_MEDIA_ROOT=/data/media \
     PAPERLESS_CONSUMPTION_DIR=/data/consume \
     PAPERLESS_ADMIN_USER=admin \
+    PAPERLESS_DBENGINE=postgresql \
+    PAPERLESS_DBPORT=5432 \
     PAPERLESS_TIME_ZONE=UTC \
     PAPERLESS_OCR_LANGUAGE=eng \
     PAPERLESS_TASK_WORKERS=1
