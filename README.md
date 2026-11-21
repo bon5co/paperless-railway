@@ -5,8 +5,8 @@
 **Deploy on Railway:** [Paperless-ngx template](https://railway.com/deploy/paperless-ngx-or-just-updated-document-m?referralCode=Z1xivh&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 Wrapper image for running [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
-3.4.2 on [Railway](https://railway.com), published as
-`ghcr.io/bon5co/paperless-railway:3.4.2`.
+3.5.1 on [Railway](https://railway.com), published as
+`ghcr.io/bon5co/paperless-railway:3.5.1`.
 
 The official image assumes a docker-compose environment. On Railway it needs four
 changes, none of which can be made from the template's variables panel:
