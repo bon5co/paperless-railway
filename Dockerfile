@@ -8,6 +8,9 @@ FROM ghcr.io/paperless-ngx/paperless-ngx:3.5.1@sha256:8508853b8a0f8394074260957d
 
 # Literals baked in so the deploy form asks for nothing that the image already knows.
 # All durable state lands under the single Railway volume at /data.
+# Since 3.5 upstream no longer allows every Host once PAPERLESS_URL is set (it allows that URL's
+# host and localhost only), which rejects Railway's healthcheck host and fails the deploy. The
+# public domain is added from PAPERLESS_URL by upstream itself, so only the probe host is named.
 ENV PAPERLESS_DATA_DIR=/data/data \
     PAPERLESS_MEDIA_ROOT=/data/media \
     PAPERLESS_CONSUMPTION_DIR=/data/consume \
@@ -16,7 +19,8 @@ ENV PAPERLESS_DATA_DIR=/data/data \
     PAPERLESS_DBPORT=5432 \
     PAPERLESS_TIME_ZONE=UTC \
     PAPERLESS_OCR_LANGUAGE=eng \
-    PAPERLESS_TASK_WORKERS=1
+    PAPERLESS_TASK_WORKERS=1 \
+    PAPERLESS_ALLOWED_HOSTS=healthcheck.railway.app
 
 # Create-or-rotate superuser, replacing upstream's create-once script.
 COPY init-superuser-run /etc/s6-overlay/s6-rc.d/init-superuser/run
